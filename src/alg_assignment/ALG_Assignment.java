@@ -14,19 +14,16 @@ public class ALG_Assignment {
         int maxProfit = 500;
         List<Task> tasks = Task.generateRandomTasks(taskCount, availableHours, maxProfit);
 
-        // Print all tasks before selection
         System.out.println("All Generated Tasks:");
         for (Task task : tasks) {
             System.out.println(task);
         }
 
-        // Measure memory before Dynamic Programming
         Runtime runtime = Runtime.getRuntime();
-        runtime.gc();  // Run Garbage Collector
+        runtime.gc();  
         long memoryBeforeDynamic = runtime.totalMemory() - runtime.freeMemory();
         long startTimeDynamic = System.nanoTime();
 
-        // Dynamic Programming
         Dynamic dynamic = new Dynamic();
         List<Task> dynamicSelectedTasks = dynamic.allocateTasks(tasks, availableHours);
         
@@ -47,15 +44,13 @@ public class ALG_Assignment {
         System.out.println("Execution Time (Dynamic Programming): " + (endTimeDynamic - startTimeDynamic) / 1_000_000.0 + " ms");
         System.out.println("Memory Usage (Dynamic Programming): " + (memoryAfterDynamic - memoryBeforeDynamic) / 1024.0 + " KB");
 
-        // Measure memory before Greedy Algorithm
-        runtime.gc();  // Run Garbage Collector
+        runtime.gc();  
         long memoryBeforeGreedy = runtime.totalMemory() - runtime.freeMemory();
         long startTimeGreedy = System.nanoTime();
 
         // Greedy Algorithm
         Greedy allocator = new Greedy();
         List<Task> selectedTasks = allocator.allocateTasks(tasks, availableHours);
-
 
         int totalProfit = 0;
         int totalHours = 0;
