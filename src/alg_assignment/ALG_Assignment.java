@@ -5,7 +5,7 @@
 package alg_assignment;
 import java.util.ArrayList;
 import java.util.List;
-/**
+/** 
  *
  * @author User
  */
@@ -16,18 +16,17 @@ public class ALG_Assignment {
      */
     public static void main(String[] args) {
         int availableHours = 8;
-        List<Task> tasks = new ArrayList<>();
-        
-        // Create tasks with names, time, and profit.
-        tasks.add(new Task("Task 1", 3, 300));
-        tasks.add(new Task("Task 2", 4, 100));
-        tasks.add(new Task("Task 3", 1, 200));
-        tasks.add(new Task("Task 4", 1, 500));
-        tasks.add(new Task("Task 5", 2, 250));
-        
+        int taskCount = 10;
+        int maxProfit = 500;
+        List<Task> tasks = Task.generateRandomTasks(taskCount, availableHours, maxProfit);
+        // Print all tasks before selection
+        System.out.println("All Generated Tasks:");
+        for (Task task : tasks) {
+            System.out.println(task);
+        }
+        //GreedyAlgorithem
         Greedy allocator = new Greedy();
         List<Task> selectedTasks = allocator.allocateTasks(tasks, availableHours);
-        
         int totalProfit = 0;
         int totalHours = 0;
         System.out.println("Selected Tasks:");

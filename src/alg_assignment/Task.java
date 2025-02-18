@@ -4,6 +4,10 @@
  */
 package alg_assignment;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
 /**
  *
  * @author User
@@ -31,6 +35,18 @@ public class Task {
         return profit;
     }
     
+    public static List<Task>generateRandomTasks(int taskCount,int maxHour,int maxProfit){
+        List<Task> tasks = new ArrayList<>();
+        Random random = new Random();
+        
+        for(int i = 0; i < taskCount; i++){
+            String taskName = "Task " + (i + 1);
+            int time  = random.nextInt(maxHour) + 1;
+            int profit = random.nextInt(maxProfit / 50) * 50 + 50;
+            tasks.add(new Task(taskName,time,profit));
+        }
+        return tasks;
+    }
     public String toString(){
         return name + " (Time: " + time + " hours, Profit: $" + profit + ")";
     } 
